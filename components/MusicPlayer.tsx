@@ -9,6 +9,12 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.2; // Set volume to 20%
+    }
+  }, []);
+
+  useEffect(() => {
     if (autoPlayTrigger && audioRef.current) {
       audioRef.current.play().catch((err) => {
         console.log("Autoplay blocked:", err);
@@ -32,7 +38,7 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
     <div className="fixed bottom-8 left-8 z-50">
       <audio
         ref={audioRef}
-        src="https://cdn.pixabay.com/audio/2022/05/27/audio_1808f30302.mp3"
+        src="/song.mp3"
         loop
       />
       <motion.button
