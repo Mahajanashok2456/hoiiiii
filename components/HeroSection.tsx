@@ -11,7 +11,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onOpen }: HeroSectionProps) {
   const floatingHearts = React.useMemo(
     () =>
-      Array.from({ length: 16 }, (_, i) => ({
+      Array.from({ length: 8 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
@@ -95,17 +95,7 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
         className="text-center mb-10 md:mb-16 relative z-10 max-w-4xl"
       >
         {/* Main Title */}
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold bg-gradient-to-r from-rose-500 via-pink-500 to-rose-400 bg-clip-text text-transparent mb-6 leading-tight"
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        >
+        <motion.h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold bg-gradient-to-r from-rose-500 via-pink-500 to-rose-400 bg-clip-text text-transparent mb-6 leading-tight">
           Happy Birthday,
           <br />
           <span className="text-3xl sm:text-4xl md:text-6xl block mt-2 text-romantic">
@@ -157,11 +147,9 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
 
           {/* Teddy Icon */}
           <motion.div
-            animate={{
-              scale: [1, 1.15, 1],
-            }}
+            animate={{ scale: [1, 1.08, 1] }}
             transition={{
-              duration: 1.5,
+              duration: 2,
               repeat: Infinity,
               ease: "easeInOut",
             }}

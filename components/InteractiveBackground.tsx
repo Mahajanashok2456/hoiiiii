@@ -5,42 +5,55 @@ import { motion } from "framer-motion";
 
 export default function InteractiveBackground() {
   const [isMounted, setIsMounted] = useState(false);
-  const particles = Array.from({ length: 30 });
-  const hearts = Array.from({ length: 15 });
+  const [isLightMode, setIsLightMode] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+
+    const mediaQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (max-width: 768px)",
+    );
+    const updateMode = () => setIsLightMode(mediaQuery.matches);
+    updateMode();
+    mediaQuery.addEventListener("change", updateMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateMode);
+    };
   }, []);
+
+  const particleCount = isLightMode ? 12 : 24;
+  const teddyCount = isLightMode ? 6 : 12;
 
   // Use fixed arrays to avoid re-renders or mismatches
   const particleArray = React.useMemo(
     () =>
-      Array.from({ length: 30 }, (_, i) => ({
+      Array.from({ length: particleCount }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         opacity: Math.random() * 0.5 + 0.2,
         scale: Math.random() * 0.5 + 0.5,
-        duration: Math.random() * 10 + 10,
+        duration: Math.random() * 12 + 12,
       })),
-    [],
+    [particleCount],
   );
 
   const heartArray = React.useMemo(
     () =>
-      Array.from({ length: 15 }, (_, i) => ({
+      Array.from({ length: teddyCount }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         scale: Math.random() * 0.5 + 0.5,
         rotate: Math.random() * 360,
-        driftX: Math.random() * 140 - 70,
-        driftY: Math.random() * 120 - 60,
-        duration: Math.random() * 14 + 12,
+        driftX: Math.random() * 100 - 50,
+        driftY: Math.random() * 90 - 45,
+        duration: Math.random() * 16 + 14,
         delay: Math.random() * 8,
-        fontSize: Math.random() * 20 + 10,
+        fontSize: Math.random() * 14 + 10,
       })),
-    [],
+    [teddyCount],
   );
 
   if (!isMounted)
@@ -61,7 +74,7 @@ export default function InteractiveBackground() {
             scale: p.scale,
           }}
           animate={{
-            y: [0, -100, 0],
+            y: [0, -70, 0],
             opacity: [p.opacity, 0.8, p.opacity],
           }}
           transition={{
@@ -85,10 +98,10 @@ export default function InteractiveBackground() {
             rotate: h.rotate,
           }}
           animate={{
-            x: [0, h.driftX, h.driftX * -0.5, 0],
-            y: [0, h.driftY * -0.6, h.driftY, 0],
-            opacity: [0, 0.65, 0.35, 0],
-            rotate: [h.rotate, h.rotate + 180, h.rotate + 360],
+            x: [0, h.driftX, 0],
+            y: [0, h.driftY, 0],
+            opacity: [0, 0.55, 0],
+            rotate: [h.rotate, h.rotate + 180],
           }}
           transition={{
             duration: h.duration,
@@ -113,7 +126,9 @@ export default function InteractiveBackground() {
       ))}
 
       {/* Subtle Sparkles Overlay */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 mix-blend-overlay" />
+      {!isLightMode && (
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10 mix-blend-overlay" />
+      )}
     </div>
   );
 }

@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function MemoryGallery() {
   const floatingHearts = React.useMemo(
     () =>
-      Array.from({ length: 12 }, (_, i) => ({
+      Array.from({ length: 6 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
@@ -17,7 +17,7 @@ export default function MemoryGallery() {
         rotate: Math.random() * 40 - 20,
         duration: Math.random() * 7 + 10,
         delay: Math.random() * 3,
-        opacity: Math.random() * 0.3 + 0.15,
+        opacity: Math.random() * 0.2 + 0.12,
       })),
     [],
   );
@@ -373,10 +373,10 @@ export default function MemoryGallery() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: photo.delay, ease: "easeOut" }}
             whileHover={{
-              scale: 1.08,
+              scale: 1.04,
               rotate: 0,
               zIndex: 50,
-              transition: { duration: 0.3 },
+              transition: { duration: 0.2 },
             }}
             className="polaroid-frame group cursor-pointer bg-white/90 w-full max-w-[320px] mx-auto"
           >
@@ -386,6 +386,8 @@ export default function MemoryGallery() {
                   src={photo.src}
                   alt={photo.label}
                   fill
+                  loading="lazy"
+                  quality={70}
                   sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 92vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />

@@ -90,10 +90,9 @@ export default function BirthdayPage() {
           <motion.div
             key="hero"
             exit={{
-              scale: 2.5,
+              scale: 1.08,
               opacity: 0,
-              filter: "blur(30px) brightness(2)",
-              transition: { duration: 1.8, ease: "easeInOut" },
+              transition: { duration: 0.8, ease: "easeOut" },
             }}
           >
             <HeroSection onOpen={handleOpenSurprise} />
@@ -103,7 +102,7 @@ export default function BirthdayPage() {
             key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2.5, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
             <MessageSection />
