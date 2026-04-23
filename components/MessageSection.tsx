@@ -35,16 +35,16 @@ export default function MessageSection() {
   };
 
   return (
-    <div className="relative z-10 min-h-screen flex items-center justify-center p-6 md:p-12">
+    <div className="relative z-10 min-h-screen flex items-center justify-center p-6 md:p-12 overflow-hidden">
       <motion.div
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="glass max-w-4xl w-full p-8 md:p-16 rounded-[40px] text-center md:text-left space-y-8"
+        className="glass max-w-4xl w-full p-8 md:p-16 rounded-[40px] text-center md:text-left space-y-8 relative"
       >
-        <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink-300/20 blur-3xl rounded-full" />
-        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-rose-300/20 blur-3xl rounded-full" />
+        <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink-300/20 blur-3xl rounded-full z-[-1]" />
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-rose-300/20 blur-3xl rounded-full z-[-1]" />
         
         {messages.map((text, i) => (
           <motion.p

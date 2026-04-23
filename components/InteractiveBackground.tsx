@@ -12,6 +12,26 @@ export default function InteractiveBackground() {
     setIsMounted(true);
   }, []);
 
+  // Use fixed arrays to avoid re-renders or mismatches
+  const particleArray = React.useMemo(() => Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    opacity: Math.random() * 0.5 + 0.2,
+    scale: Math.random() * 0.5 + 0.5,
+    duration: Math.random() * 10 + 10
+  })), []);
+
+  const heartArray = React.useMemo(() => Array.from({ length: 15 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    scale: Math.random() * 0.5 + 0.5,
+    rotate: Math.random() * 360,
+    duration: Math.random() * 15 + 15,
+    delay: Math.random() * 10,
+    fontSize: Math.random() * 20 + 10
+  })), []);
+
   if (!isMounted) return <div className="fixed inset-0 bg-gradient-to-br from-pink-50 via-white to-pink-100" />;
 
   return (
@@ -37,21 +57,21 @@ export default function InteractiveBackground() {
       />
 
       {/* Floating Particles */}
-      {particles.map((_, i) => (
+      {particleArray.map((p) => (
         <motion.div
-          key={`p-${i}`}
+          key={`p-${p.id}`}
           initial={{ 
-            x: Math.random() * 100 + "%", 
-            y: Math.random() * 100 + "%",
-            opacity: Math.random() * 0.5 + 0.2,
-            scale: Math.random() * 0.5 + 0.5
+            left: p.left, 
+            top: p.top,
+            opacity: p.opacity,
+            scale: p.scale
           }}
           animate={{
-            y: [null, "-20%", null],
-            opacity: [null, 0.8, null],
+            y: [0, -100, 0],
+            opacity: [p.opacity, 0.8, p.opacity],
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: p.duration,
             repeat: Infinity,
             ease: "easeInOut",
           }}
@@ -60,29 +80,29 @@ export default function InteractiveBackground() {
       ))}
 
       {/* Floating Hearts */}
-      {hearts.map((_, i) => (
+      {heartArray.map((h) => (
         <motion.div
-          key={`h-${i}`}
+          key={`h-${h.id}`}
           initial={{ 
-            x: Math.random() * 100 + "%", 
-            y: "110%",
+            left: h.left, 
+            top: "110%",
             opacity: 0,
-            scale: Math.random() * 0.5 + 0.5,
-            rotate: Math.random() * 360
+            scale: h.scale,
+            rotate: h.rotate
           }}
           animate={{
-            y: "-10%",
+            top: "-10%",
             opacity: [0, 0.6, 0],
-            rotate: [null, Math.random() * 360 + 180],
+            rotate: [h.rotate, h.rotate + 360],
           }}
           transition={{
-            duration: Math.random() * 15 + 15,
+            duration: h.duration,
             repeat: Infinity,
             ease: "linear",
-            delay: Math.random() * 10
+            delay: h.delay
           }}
           className="absolute text-pink-200 select-none"
-          style={{ fontSize: Math.random() * 20 + 10 }}
+          style={{ fontSize: h.fontSize }}
         >
           ❤️
         </motion.div>
