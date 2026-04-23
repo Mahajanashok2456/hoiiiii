@@ -13,8 +13,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Birthday, My Love 💖 | For Praneetha",
-  description: "A magical birthday celebration woven with love, just for the most beautiful soul I know.",
+  title: "Happy Birthday,  | For Praneetha",
+  description:
+    "A magical birthday celebration woven with love, just for the most beautiful soul I know.",
+  icons: {
+    icon: "/doll.png",
+    shortcut: "/doll.png",
+    apple: "/doll.png",
+  },
 };
 
 export default function RootLayout({
