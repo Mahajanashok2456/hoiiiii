@@ -13,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Happy Birthday Praneetha! ✨",
-  description: "A special cinematic birthday surprise for the prettiest girl.",
+  title: "Happy Birthday, My Love 💖 | For Praneetha",
+  description: "A magical birthday celebration woven with love, just for the most beautiful soul I know.",
 };
 
 export default function RootLayout({
@@ -23,8 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${outfit.variable} ${inter.variable} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${outfit.variable} ${inter.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CursorGlow() {
@@ -23,13 +23,16 @@ export default function CursorGlow() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+      className="fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] hidden md:block"
       style={{
         x: cursorX,
         y: cursorY,
-        background: "white",
-        boxShadow: "0 0 20px 10px rgba(244, 143, 177, 0.4)",
+        filter: "drop-shadow(0 0 10px rgba(244, 143, 177, 0.45))",
       }}
-    />
+    >
+      <span className="text-3xl select-none" aria-hidden="true">
+        🧸
+      </span>
+    </motion.div>
   );
 }

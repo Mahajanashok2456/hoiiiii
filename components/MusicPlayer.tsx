@@ -4,7 +4,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Music, Music2 } from "lucide-react";
 
-export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: boolean }) {
+export default function MusicPlayer({
+  autoPlayTrigger,
+}: {
+  autoPlayTrigger: boolean;
+}) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -35,17 +39,13 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
   };
 
   return (
-    <div className="fixed bottom-8 left-8 z-50">
-      <audio
-        ref={audioRef}
-        src="/song.mp3"
-        loop
-      />
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-auto md:left-8 z-50">
+      <audio ref={audioRef} src="/song.mp3" loop />
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={togglePlay}
-        className="w-14 h-14 bg-white/30 backdrop-blur-md border border-white/50 rounded-full flex items-center justify-center text-pink-500 shadow-lg hover:shadow-pink-200/50 transition-all duration-300"
+        className="w-12 h-12 sm:w-14 sm:h-14 bg-white/30 backdrop-blur-md border border-white/50 rounded-full flex items-center justify-center text-pink-500 shadow-lg hover:shadow-pink-200/50 transition-all duration-300"
       >
         <AnimatePresence mode="wait">
           {isPlaying ? (
@@ -55,7 +55,7 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: 180 }}
             >
-              <Music2 className="w-6 h-6 animate-pulse" />
+              <Music2 className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
             </motion.div>
           ) : (
             <motion.div
@@ -64,7 +64,7 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
               animate={{ opacity: 1, rotate: 0 }}
               exit={{ opacity: 0, rotate: 180 }}
             >
-              <Music className="w-6 h-6" />
+              <Music className="w-5 h-5 sm:w-6 sm:h-6" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -73,7 +73,7 @@ export default function MusicPlayer({ autoPlayTrigger }: { autoPlayTrigger: bool
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          className="absolute left-16 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-sm px-4 py-2 rounded-full text-xs font-medium text-pink-600 whitespace-nowrap border border-white/50"
+          className="absolute right-14 sm:right-auto sm:left-16 top-1/2 -translate-y-1/2 bg-white/40 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-xs font-medium text-pink-600 whitespace-nowrap max-w-[58vw] sm:max-w-none truncate border border-white/50"
         >
           Playing Sweet Melody...
         </motion.div>
