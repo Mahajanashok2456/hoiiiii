@@ -96,10 +96,10 @@ export default function HeroSection({ onOpen }: HeroSectionProps) {
       >
         {/* Main Title */}
         <motion.h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold bg-gradient-to-r from-rose-500 via-pink-500 to-rose-400 bg-clip-text text-transparent mb-6 leading-tight">
-          hoiiiiii its your birthdayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy,
+          hoiiiiii its your birthdayyyy,
           <br />
           <span className="text-3xl sm:text-4xl md:text-6xl block mt-2 text-romantic">
-            Praneethaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 🤌
+            Praneethaaaaaa 🤌
           </span>
         </motion.h1>
 
