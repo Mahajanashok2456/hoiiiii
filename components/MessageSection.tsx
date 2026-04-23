@@ -15,7 +15,7 @@ export default function MessageSection() {
     "Your shine spreads such an amazing energy everywhere, and your aura feels so positive.",
     "You’re the one I’d call the definition of a perfect girl....",
     "Happy birthday to the prettiest, cutest, beautifullest gurllllll 🤌🤌...",
-    "I miss raji 😂🙂↔️",
+    "I miss raji 😂💖",
   ];
 
   const container = {
